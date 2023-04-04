@@ -29,10 +29,40 @@
           <h1>TODO</h1>
           <button class="theme-toggle"></button>
         </header>
-        <div class="input-field">
-          <div class="check"></div>
-          <input type="text" placeholder="Create a new todo..." />
-        </div>
+        <form>
+          <div class="input-field">
+            <div class="check"></div>
+            <input type="text" placeholder="Create a new todo..." />
+          </div>
+          <div class="tasks-container">
+            <ul class="tasks">
+              <li>
+                <div class="check">
+                  <img src="images/icon-check.svg" alt="Mark as done" />
+                </div>
+                Complete online JavaScript course
+                <img class="clear" src="images/icon-cross.svg" alt="Delete" />
+              </li>
+              <li class="completed">
+                <div class="check">
+                  <img src="images/icon-check.svg" alt="Mark as done" />
+                </div>
+                Jog around the park 3x
+                <img class="clear" src="images/icon-cross.svg" alt="Delete" />
+              </li>
+            </ul>
+            <footer class="form-footer">
+              <span class="left-items">5 items left</span>
+              <div class="states-btns">
+                <button class="all">All</button>
+                <button>Active</button>
+                <button>Completed</button>
+              </div>
+              <button>Clear Completed</button>
+            </footer>
+          </div>
+          <p>Drag and drop to reorder list</p>
+        </form>
       </section>
       <footer class="attribution">
         <p>
@@ -45,6 +75,6 @@
       </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script src="dist/app.js"></script>
   </body>
 </html>
