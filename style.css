@@ -1,0 +1,31 @@
+:root {
+  --Bright-Blue: hsl(220, 98%, 61%);
+  --Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+
+  /* Light Theme */
+
+  --Light-theme-1: hsl(0, 0%, 98%);
+  --Light-theme-2: hsl(236, 33%, 92%);
+  --Light-theme-3: hsl(233, 11%, 84%);
+  --Light-theme-4: hsl(236, 9%, 61%);
+  --Light-theme-5: hsl(235, 19%, 35%);
+
+  /* Dark Theme */
+
+  --Dark-theme-1: hsl(236, 33%, 92%); /*  (hover) */
+  --Dark-theme-2: hsl(234, 39%, 85%);
+  --Dark-theme-3: hsl(234, 11%, 52%);
+  --Dark-theme-4: hsl(233, 14%, 35%);
+  --Dark-theme-5: hsl(237, 14%, 26%);
+  --Dark-theme-6: hsl(235, 24%, 19%);
+  --Dark-theme-7: hsl(235, 21%, 11%);
+
+  --fs: 1.125rem;
+}
+
+* {
+  font-family: "Josefin Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
