@@ -52,7 +52,6 @@ img {
 .container {
   width: 100%;
   height: 100%;
-  max-width: 1440px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,6 +68,7 @@ img {
 .bg-image {
   width: 100%;
   height: 300px;
+  max-width: 1440px;
 }
 
 .container.container.dark-theme .bg-image {
@@ -82,8 +82,9 @@ img {
 /* App Header */
 
 .app {
-  width: 400px;
-  transform: translateY(-10rem);
+  width: 550px;
+  position: fixed;
+  top: 6rem;
   display: grid;
   gap: 2rem;
 }
@@ -139,7 +140,7 @@ form {
 }
 
 .container.dark-theme .input-field {
-  background-color: var(--Dark-theme-5);
+  background-color: var(--Dark-theme-6);
 }
 
 .container.light-theme .input-field {
@@ -161,7 +162,7 @@ input {
   font-size: var(--fs);
   outline: none;
   padding: 1rem;
-  width: 87%;
+  width: 91%;
 }
 
 .container.dark-theme input {
@@ -186,7 +187,7 @@ input {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  margin: 1rem;
+  margin: 1.4rem;
   display: grid;
   place-content: center;
 }
@@ -227,7 +228,7 @@ input {
   color: var(--Light-theme-5);
 }
 
-.tasks li {
+.task {
   list-style: none;
   display: flex;
   align-items: center;
@@ -280,7 +281,7 @@ input {
 }
 
 .container.dark-theme .tasks-container {
-  background-color: var(--Dark-theme-5);
+  background-color: var(--Dark-theme-6);
 }
 
 .container.light-theme .tasks-container {
@@ -345,4 +346,70 @@ form p {
 
 .attribution a {
   color: var(--Dark-theme-3);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 550px) {
+  .app {
+    width: calc(100vw - 3rem);
+  }
+
+  input::placeholder,
+  input,
+  .task {
+    font-size: 0.8rem;
+  }
+
+  .check {
+    margin: 1rem;
+  }
+
+  .clear {
+    opacity: 1;
+  }
+
+  .form-footer {
+    position: relative;
+  }
+
+  .states-btns {
+    position: absolute;
+    bottom: -4rem;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 0.4rem;
+  }
+
+  form p {
+    margin-top: 4rem;
+  }
+
+  .container.dark-theme .states-btns {
+    background-color: var(--Dark-theme-6);
+    -webkit-box-shadow: 0px 14px 28px 0px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px 14px 28px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 14px 28px 0px rgba(0, 0, 0, 0.6);
+  }
+
+  .container.light-theme .states-btns {
+    background-color: var(--Light-theme-1);
+    -webkit-box-shadow: 0px 14px 28px 0px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0px 14px 28px 0px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 14px 28px 0px rgba(0, 0, 0, 0.08);
+  }
+}
+
+@media (max-width: 400px) {
+  .container.container.dark-theme .bg-image {
+    background: url(images/bg-mobile-dark.jpg) no-repeat cover;
+  }
+
+  .container.container.light-theme .bg-image {
+    background: url(images/bg-mobile-light.jpg) no-repeat cover;
+  }
 }
