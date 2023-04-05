@@ -135,6 +135,7 @@ form {
   width: 100%;
   display: flex;
   border-radius: 0.4rem;
+  position: relative;
 }
 
 .container.dark-theme .input-field {
@@ -143,6 +144,15 @@ form {
 
 .container.light-theme .input-field {
   background-color: var(--Light-theme-1);
+}
+
+.sr-only {
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
 }
 
 input {
@@ -247,8 +257,14 @@ input {
 
 .clear {
   position: absolute;
-  right: 1rem;
+  right: 0;
+  padding: 1rem;
   opacity: 0;
+}
+
+.clear img,
+.check img {
+  pointer-events: none;
 }
 
 .tasks li:hover .clear {
