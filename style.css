@@ -236,6 +236,10 @@ input {
   cursor: pointer;
 }
 
+.task.dragging {
+  opacity: 0.5;
+}
+
 .tasks li.completed {
   text-decoration: line-through;
 }

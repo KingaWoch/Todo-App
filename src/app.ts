@@ -39,6 +39,7 @@ function addTask(e: Event) {
   e.preventDefault();
   const taskElement: HTMLElement = document.createElement("li");
   taskElement.classList.add("task");
+  taskElement.setAttribute("draggable", "true");
   taskElement.innerHTML = `
     <div class="check">
       <img src="images/icon-check.svg" alt="Mark as done" />
@@ -81,9 +82,9 @@ function changeState(e) {
 }
 
 // FILTER TASKS FUNCTION
+let tasks = tasksContainer.querySelectorAll("li");
 
 function filterTasks(e) {
-  const tasks = tasksContainer.querySelectorAll("li");
   console.log(tasks);
   tasks.forEach((task) => {
     switch (e.target.value) {
@@ -119,12 +120,54 @@ function countLeftItems() {
 
 function clearCompleted(e) {
   const tasks = tasksContainer.querySelectorAll("li");
+  console.log(tasks);
   tasks.forEach((task) => {
     if (task.classList.contains("completed")) {
       task.remove();
     }
   });
   countLeftItems();
+}
+
+// DRAG AND DROP
+
+tasks.forEach((task) => {
+  task.addEventListener("dragstart", () => {
+    task.classList.add("dragging");
+  });
+  task.addEventListener("dragend", () => {
+    task.classList.remove("dragging");
+  });
+
+  tasksContainer.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    const afterElement = getDragAfterElement(tasksContainer, e.clientY);
+    const task = document.querySelector(".dragging");
+    if (afterElement == null) {
+      tasksContainer.appendChild(task);
+    } else {
+      tasksContainer.insertBefore(task, afterElement);
+    }
+  });
+});
+
+function getDragAfterElement(tasksContainer, y) {
+  const draggableElement = [
+    ...tasksContainer.querySelectorAll(".task:not(.dragging)"),
+  ];
+
+  return draggableElement.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ).element;
 }
 
 // LOCAL STORAGE
