@@ -18,14 +18,15 @@ const tasksContainer = document.querySelector(".tasks");
 const leftItems = document.querySelector(".left-items");
 const statesButtons = document.querySelector(".states-btns");
 const clearCompletedBtn = document.querySelector("#clear-completed-btn");
-const tasks = [
-    { name: "Complete online JavaScript course", done: true },
-    { name: "Jog around the park x3", done: false },
-    { name: "10 minutes meditation", done: false },
-    { name: "Read for 1 hour", done: false },
-    { name: "Pick up groceries", done: false },
-    { name: "Complete Todo App on Frontend Mentor", done: false },
-];
+const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+// [
+//   { name: "Complete online JavaScript course", done: true },
+//   { name: "Jog around the park x3", done: false },
+//   { name: "10 minutes meditation", done: false },
+//   { name: "Read for 1 hour", done: false },
+//   { name: "Pick up groceries", done: false },
+//   { name: "Complete Todo App on Frontend Mentor", done: false },
+// ];
 // RENDER TASK LIST
 const renderTaskList = () => {
     tasksContainer.innerHTML = "";
@@ -56,6 +57,7 @@ const renderTaskList = () => {
                 task.done = true;
             }
             countLeftItems();
+            localStorage.setItem("tasks", JSON.stringify(tasks));
         });
         tasksContainer.appendChild(taskElement);
     });
@@ -72,8 +74,7 @@ form.addEventListener("submit", (event) => {
     renderTaskList();
     countLeftItems();
     dragAndDrop();
-    // ADD TASKS TO LOCALSTORAGE
-    //saveLocalTasks(taskInput.value);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 });
 // LEFT ITEMS
 function countLeftItems() {
@@ -120,7 +121,7 @@ const filterTasks = (e) => {
     countLeftItems();
 };
 // CLEAR COMPLETED FUNCTION
-function clearCompleted(e) {
+function clearCompleted() {
     const tasks = tasksContainer.querySelectorAll("li");
     tasks.forEach((task) => {
         if (task.classList.contains("completed")) {
@@ -168,17 +169,6 @@ function getDragAfterElement(tasksContainer, y) {
         }
     }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
-// LOCAL STORAGE
-// function saveLocalTasks(task) {
-//   let tasks;
-//   if (localStorage.getItem("tasks") === null) {
-//     tasks = [];
-//   } else {
-//     tasks = JSON.parse(localStorage.getItem("tasks"));
-//   }
-//   tasks.push(task);
-//   localStorage.setItem("tasks", JSON.stringify("tasks"));
-// }
 // EVENT LISTENERS
 tasksContainer.addEventListener("click", deleteTask);
 statesButtons.addEventListener("click", filterTasks);
